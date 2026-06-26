@@ -414,13 +414,15 @@
 
   if (cform) {
     const origBtnText = fsub ? fsub.textContent : 'Envoyer';
-    cform.addEventListener('submit', e => {
+    const isEnt = !!document.getElementById('f-societe');
+
+    cform.addEventListener('submit', async e => {
       e.preventDefault();
 
       const now = Date.now();
       if (now - lastSubmit < 30000) {
         fsub.textContent = 'Patientez 30s avant de renvoyer…';
-        setTimeout(() => { fsub.textContent = 'Envoyer le Message'; }, 3000);
+        setTimeout(() => { fsub.textContent = origBtnText; }, 3000);
         return;
       }
 
@@ -446,36 +448,39 @@
       fsub.disabled    = true;
       fsub.textContent = 'Envoi en cours…';
 
-      const data = new FormData();
-      data.append('access_key', 'VOTRE_CLE_WEB3FORMS');
-      data.append('subject',    '[TERENA OIL] Nouveau message — ' + sanitize(document.getElementById('fs')?.value || 'Contact'));
-      data.append('from_name',  sanitize((document.getElementById('fp')?.value || '') + ' ' + (document.getElementById('fn')?.value || '')));
-      data.append('prenom',     sanitize(document.getElementById('fp')?.value || ''));
-      data.append('nom',        sanitize(document.getElementById('fn')?.value || ''));
-      data.append('telephone',  sanitize(document.getElementById('ft')?.value || ''));
-      data.append('email',      sanitize(document.getElementById('fe')?.value || '') || 'non fourni');
-      data.append('sujet',      sanitize(document.getElementById('fs')?.value || ''));
-      data.append('message',    sanitize(document.getElementById('fm')?.value || ''));
-      data.append('replyto',    sanitize(document.getElementById('fe')?.value || '') || 'noreply@terenaoil.ml');
-
-      fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
-        .then(r => r.json())
-        .then(res => {
-          fsub.disabled    = false;
-          fsub.textContent = origBtnText;
-          if (res.success) {
-            cform.reset();
-            if (fok) { fok.style.display = 'flex'; setTimeout(() => { fok.style.display = 'none'; }, 6000); }
-          } else {
-            fsub.textContent = 'Erreur — Réessayez ou appelez-nous';
-            setTimeout(() => { fsub.textContent = origBtnText; }, 4000);
-          }
-        })
-        .catch(() => {
-          fsub.disabled    = false;
-          fsub.textContent = 'Erreur réseau — Réessayez';
-          setTimeout(() => { fsub.textContent = origBtnText; }, 4000);
-        });
+      try {
+        if (isEnt) {
+          const fVal = parseInt(document.getElementById('f-flotte')?.value, 10);
+          await window.supa.insert('terena_demandes', {
+            societe:   sanitize(document.getElementById('f-societe')?.value || ''),
+            secteur:   sanitize(document.getElementById('f-secteur')?.value || '') || null,
+            flotte:    isNaN(fVal) ? null : fVal,
+            conso:     sanitize(document.getElementById('f-conso')?.value || '') || null,
+            prenom:    sanitize(document.getElementById('fp')?.value || ''),
+            nom:       sanitize(document.getElementById('fn')?.value || ''),
+            telephone: sanitize(document.getElementById('ft')?.value || ''),
+            email:     sanitize(document.getElementById('fe')?.value || '') || null,
+            message:   sanitize(document.getElementById('fm')?.value || '') || null,
+          });
+        } else {
+          await window.supa.insert('terena_messages', {
+            prenom:    sanitize(document.getElementById('fp')?.value || ''),
+            nom:       sanitize(document.getElementById('fn')?.value || ''),
+            telephone: sanitize(document.getElementById('ft')?.value || ''),
+            email:     sanitize(document.getElementById('fe')?.value || '') || null,
+            sujet:     sanitize(document.getElementById('fs')?.value || ''),
+            message:   sanitize(document.getElementById('fm')?.value || ''),
+          });
+        }
+        fsub.disabled    = false;
+        fsub.textContent = origBtnText;
+        cform.reset();
+        if (fok) { fok.style.display = 'flex'; setTimeout(() => { fok.style.display = 'none'; }, 6000); }
+      } catch (_err) {
+        fsub.disabled    = false;
+        fsub.textContent = 'Erreur — Réessayez ou appelez-nous';
+        setTimeout(() => { fsub.textContent = origBtnText; }, 4000);
+      }
     });
     cform.querySelectorAll('.fi, .fta').forEach(f => {
       f.addEventListener('input', () => f.classList.remove('err'));

@@ -271,6 +271,16 @@ body{font-family:var(--f);background:var(--bg);color:var(--dark);display:flex;mi
         <svg class="sn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         Supermarché
       </button>
+      <button class="sn" data-panel="demandes">
+        <svg class="sn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Nouvelles Demandes
+        <span class="sn-badge" id="nbDemandes">…</span>
+      </button>
+      <button class="sn" data-panel="messages">
+        <svg class="sn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        Messages Contact
+        <span class="sn-badge" id="nbMessages">…</span>
+      </button>
     </div>
     <div class="sb-div"></div>
     <div class="sb-sect">
@@ -312,7 +322,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--dark);display:flex;mi
       <div class="tb-date">Jeu. 26 Juin 2026</div>
       <div class="tb-notif">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15" aria-hidden="true"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
-        <div class="ndot"></div>
+        <div class="ndot" id="ndot" style="display:none"></div>
       </div>
       <div class="tb-av">TG</div>
     </div>
@@ -536,6 +546,34 @@ body{font-family:var(--f);background:var(--bg);color:var(--dark);display:flex;mi
       </div>
     </div>
 
+    <!-- ══ DEMANDES ENTREPRISES ══ -->
+    <div class="db-panel" id="panel-demandes">
+      <div class="dbc">
+        <div class="dbc-hd">
+          <div><div class="dbc-title">Demandes d'ouverture de compte</div><div class="dbc-sub" id="demandesSub">Chargement…</div></div>
+          <button class="btn-s btn-s--p" onclick="loadDemandes()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+            Actualiser
+          </button>
+        </div>
+        <div id="demandesContent"><div style="text-align:center;padding:40px;color:var(--muted)">Chargement…</div></div>
+      </div>
+    </div>
+
+    <!-- ══ MESSAGES CONTACT ══ -->
+    <div class="db-panel" id="panel-messages">
+      <div class="dbc">
+        <div class="dbc-hd">
+          <div><div class="dbc-title">Messages — Formulaire de contact</div><div class="dbc-sub" id="messagesSub">Chargement…</div></div>
+          <button class="btn-s btn-s--p" onclick="loadMessages()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+            Actualiser
+          </button>
+        </div>
+        <div id="messagesContent"><div style="text-align:center;padding:40px;color:var(--muted)">Chargement…</div></div>
+      </div>
+    </div>
+
     <!-- ══ RAPPORTS ══ -->
     <div class="db-panel" id="panel-rapports">
       <div class="kpi-row" style="margin-bottom:20px">
@@ -593,12 +631,13 @@ body{font-family:var(--f);background:var(--bg);color:var(--dark);display:flex;mi
   <span id="toastMsg">Action effectuée</span>
 </div>
 
+<script src="../js/supabase-client.js"></script>
 <script>
 /* Navigation */
 const panels = document.querySelectorAll('.db-panel');
 const navBtns = document.querySelectorAll('.sn[data-panel]');
 const titleEl = document.getElementById('pageTitle');
-const titles = {overview:"Vue d'ensemble",entreprises:"Comptes Entreprises",carwash:"Car Wash",supermarche:"Supermarché",rapports:"Rapports"};
+const titles = {overview:"Vue d'ensemble",entreprises:"Comptes Entreprises",carwash:"Car Wash",supermarche:"Supermarché",rapports:"Rapports",demandes:"Nouvelles Demandes",messages:"Messages Contact"};
 
 function showPanel(id) {
   panels.forEach(p => p.classList.remove('active'));
@@ -654,6 +693,93 @@ function showToast(msg) {
   clearTimeout(tt);
   tt = setTimeout(() => t.classList.remove('show'), 2800);
 }
+
+/* Escape HTML */
+function escHtml(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* Demandes entreprises */
+async function loadDemandes() {
+  const el  = document.getElementById('demandesContent');
+  const sub = document.getElementById('demandesSub');
+  el.innerHTML = '<div style="text-align:center;padding:40px;color:var(--muted)">Chargement…</div>';
+  try {
+    const data     = await window.supa.select('terena_demandes', { order: 'created_at.desc' });
+    const nouveaux = data.filter(d => d.statut === 'nouveau').length;
+    const badge    = document.getElementById('nbDemandes');
+    if (badge) badge.textContent = nouveaux;
+    if (sub) sub.textContent = data.length + ' demande' + (data.length !== 1 ? 's' : '') + ' · ' + nouveaux + ' nouvelle' + (nouveaux !== 1 ? 's' : '');
+    const ndot = document.getElementById('ndot');
+    if (ndot) ndot.style.display = nouveaux > 0 ? '' : 'none';
+
+    if (!data.length) {
+      el.innerHTML = '<div style="text-align:center;padding:40px;color:var(--muted)">Aucune demande pour le moment.</div>';
+      return;
+    }
+    el.innerHTML = '<div style="overflow-x:auto"><table class="dbt"><thead><tr><th>Entreprise</th><th>Contact</th><th>Véhicules</th><th>Téléphone</th><th>Date</th><th>Statut</th><th>Actions</th></tr></thead><tbody>' +
+      data.map(d => `<tr id="dem-${d.id}">
+        <td><div class="ent-n">${escHtml(d.societe)}</div><div class="ent-s">${escHtml(d.secteur || '')}</div></td>
+        <td>${escHtml(d.prenom + ' ' + d.nom)}</td>
+        <td>${d.flotte || '—'}</td>
+        <td><a href="tel:${escHtml(d.telephone)}" style="color:var(--primary)">${escHtml(d.telephone)}</a></td>
+        <td>${new Date(d.created_at).toLocaleDateString('fr-FR')}</td>
+        <td><span class="badge ${d.statut === 'nouveau' ? 'badge--or' : d.statut === 'traité' ? 'badge--gr' : 'badge--rd'}">${escHtml(d.statut)}</span></td>
+        <td>
+          <button class="ta" onclick="marquerTraite('${d.id}')">Traiter</button>
+          <a href="https://wa.me/${(d.telephone||'').replace(/\D/g,'')}" target="_blank" class="ta">WhatsApp</a>
+        </td>
+      </tr>`).join('') + '</tbody></table></div>';
+  } catch (_) {
+    el.innerHTML = '<div style="text-align:center;padding:40px;color:var(--red)">Erreur de chargement — vérifiez la connexion.</div>';
+  }
+}
+
+async function marquerTraite(id) {
+  try {
+    await window.supa.update('terena_demandes', id, { statut: 'traité' });
+    showToast('Demande marquée comme traitée');
+    loadDemandes();
+  } catch (_) {
+    showToast('Erreur — réessayez');
+  }
+}
+
+/* Messages contact */
+async function loadMessages() {
+  const el  = document.getElementById('messagesContent');
+  const sub = document.getElementById('messagesSub');
+  el.innerHTML = '<div style="text-align:center;padding:40px;color:var(--muted)">Chargement…</div>';
+  try {
+    const data  = await window.supa.select('terena_messages', { order: 'created_at.desc' });
+    const badge = document.getElementById('nbMessages');
+    if (badge) badge.textContent = data.length;
+    if (sub) sub.textContent = data.length + ' message' + (data.length !== 1 ? 's' : '');
+
+    if (!data.length) {
+      el.innerHTML = '<div style="text-align:center;padding:40px;color:var(--muted)">Aucun message pour le moment.</div>';
+      return;
+    }
+    el.innerHTML = '<div style="overflow-x:auto"><table class="dbt"><thead><tr><th>Nom</th><th>Sujet</th><th>Message</th><th>Téléphone</th><th>Date</th></tr></thead><tbody>' +
+      data.map(d => `<tr>
+        <td><div class="ent-n">${escHtml(d.prenom + ' ' + d.nom)}</div><div class="ent-s">${escHtml(d.email || '')}</div></td>
+        <td>${escHtml(d.sujet)}</td>
+        <td style="max-width:260px;white-space:normal;line-height:1.5">${escHtml(d.message)}</td>
+        <td><a href="tel:${escHtml(d.telephone)}" style="color:var(--primary)">${escHtml(d.telephone)}</a></td>
+        <td>${new Date(d.created_at).toLocaleDateString('fr-FR')}</td>
+      </tr>`).join('') + '</tbody></table></div>';
+  } catch (_) {
+    el.innerHTML = '<div style="text-align:center;padding:40px;color:var(--red)">Erreur de chargement — vérifiez la connexion.</div>';
+  }
+}
+
+/* Charger les données au démarrage */
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.supa) {
+    loadDemandes();
+    loadMessages();
+  }
+});
 </script>
 </body>
 </html>
