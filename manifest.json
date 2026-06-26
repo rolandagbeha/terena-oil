@@ -1,0 +1,44 @@
+{
+  "name": "TERENA OIL — Bamako",
+  "short_name": "TERENA OIL",
+  "description": "Station-service, Car Wash moderne, Supermarché premium. Kalaban-coro, Bamako, Mali.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FAFAFA",
+  "theme_color": "#F5610F",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "images/logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "shopping", "utilities"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Car Wash",
+      "url": "/carwash.html",
+      "description": "Réserver un lavage auto"
+    },
+    {
+      "name": "Compte Entreprise",
+      "url": "/entreprises.html",
+      "description": "Ouvrir un compte entreprise"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact.html",
+      "description": "Nous contacter"
+    }
+  ]
+}

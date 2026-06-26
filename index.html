@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TERENA OIL — Station-Service, Car Wash & Supermarché · Bamako, Mali</title>
+<meta name="description" content="TERENA OIL — Complexe de référence à Kalaban-coro, Bamako. Station-service, Car Wash moderne, Supermarché premium, Compte entreprise mensuel. Ouvert 7j/7.">
+<meta name="robots" content="index, follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net 'unsafe-inline'; font-src https://fonts.gstatic.com; frame-src https://maps.google.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self';">
+<meta property="og:title" content="TERENA OIL — Bamako, Mali">
+<meta property="og:description" content="Station-service, Car Wash moderne, Supermarché premium. Compte entreprise avec facturation mensuelle. Kalaban-coro, Bamako.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_ML">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["GasStation", "LocalBusiness"],
+      "@id": "https://terenaoil.ml/#business",
+      "name": "TERENA OIL",
+      "alternateName": "TERENA OIL Station Service Bamako",
+      "description": "Station-service, Car Wash moderne, Supermarché premium et compte entreprise à Kalaban-coro, Bamako, Mali. Ouvert 7j/7 depuis 2014.",
+      "url": "https://terenaoil.ml",
+      "logo": "https://terenaoil.ml/images/logo.jpg",
+      "image": "https://terenaoil.ml/images/logo.jpg",
+      "telephone": "+22376752429",
+      "email": "terenaoil0@gmail.com",
+      "foundingDate": "2014",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Kalaban-coro",
+        "addressLocality": "Bamako",
+        "addressRegion": "Bamako",
+        "addressCountry": "ML"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 12.6392,
+        "longitude": -8.0029
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+          "opens": "06:00",
+          "closes": "22:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Sunday"],
+          "opens": "07:00",
+          "closes": "20:00"
+        }
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+22376752429",
+        "contactType": "customer service",
+        "availableLanguage": ["French"]
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Services TERENA OIL",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Carburant Sans Plomb 95", "description": "SP95 — 800 FCFA/L"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Gasoil", "description": "Gasoil — 700 FCFA/L"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Car Wash", "description": "Premier car wash moderne du Mali. Lavage à partir de 3 000 FCFA"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Compte Entreprise", "description": "Facturation mensuelle pour flottes de véhicules"}}
+        ]
+      },
+      "priceRange": "FCFA",
+      "currenciesAccepted": "XOF",
+      "paymentAccepted": "Cash, Orange Money, Moov Money",
+      "areaServed": "Bamako, Mali"
+    }
+  ]
+}
+</script>
+<link rel="icon" href="images/logo.jpg" type="image/jpeg">
+<link rel="apple-touch-icon" href="images/logo.jpg">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#F5610F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/layouts.css">
+</head>
+<body class="is-loading">
+
+<div class="noise" aria-hidden="true"></div>
+
+<!-- PRELOADER -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__inner">
+    <div class="loader__logo">TERENA <em>OIL</em></div>
+    <div class="loader__bar"><div class="loader__fill" id="l-fill"></div></div>
+    <span class="loader__pct" id="l-pct">0%</span>
+  </div>
+</div>
+
+<div class="c-dot" id="c-dot" aria-hidden="true"></div>
+<div class="c-ring" id="c-ring" aria-hidden="true"></div>
+
+<header>
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">TERENA <em>OIL</em></a>
+    <ul class="nav__links">
+      <li><a href="index.html" class="nav__a">Accueil</a></li>
+      <li><a href="carwash.html" class="nav__a">Car Wash</a></li>
+      <li><a href="supermarche.html" class="nav__a">Supermarché</a></li>
+      <li><a href="entreprises.html" class="nav__a">Entreprises</a></li>
+      <li><a href="contact.html" class="nav__a">Contact</a></li>
+    </ul>
+    <div class="nav__end">
+      <a href="tel:+22376752429" class="nav__tel">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.7A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+        +223 76 75 24 29
+      </a>
+      <a href="entreprises.html" class="btn btn--orange btn--sm">Compte Entreprise</a>
+      <button type="button" class="nav__burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mob" id="mob" aria-hidden="true">
+    <nav class="mob__nav" aria-label="Menu mobile">
+      <a href="index.html" class="mob__a">Accueil</a>
+      <a href="carwash.html" class="mob__a">Car Wash</a>
+      <a href="supermarche.html" class="mob__a">Supermarché</a>
+      <a href="entreprises.html" class="mob__a">Entreprises</a>
+      <a href="contact.html" class="mob__a">Contact</a>
+    </nav>
+    <div class="mob__foot">
+      <a href="tel:+22376752429" class="btn btn--outline">+223 76 75 24 29</a>
+      <a href="https://wa.me/22376752429" class="btn btn--orange" target="_blank" rel="noopener noreferrer">WhatsApp →</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero__photo" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=1920&q=75&auto=format&fit=crop" alt="" loading="eager">
+  </div>
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__grid"></div>
+    <div class="hero__blob hero__blob--a"></div>
+    <div class="hero__blob hero__blob--b"></div>
+  </div>
+  <div class="hero__wrap wrap">
+    <div class="hero__text">
+      <p class="eyebrow hero__eye" data-anim="fade">Kalaban-coro, Bamako · Mali</p>
+      <h1 class="hero__h1">
+        <span class="hero__line" data-anim="up"><em>Votre complexe</em></span>
+        <span class="hero__line" data-anim="up">de référence</span>
+        <span class="hero__line" data-anim="up">à Bamako.</span>
+      </h1>
+      <p class="hero__desc" data-anim="fade">Station-service, Car Wash moderne, Supermarché premium et compte entreprise avec facturation mensuelle. Tout en un seul endroit depuis 2014.</p>
+      <div class="hero__btns" data-anim="fade">
+        <a href="entreprises.html" class="btn btn--orange btn--lg mag-btn">Compte Entreprise <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a href="#services" class="btn btn--outline btn--lg mag-btn">Nos Services</a>
+      </div>
+      <div class="hero__pillars" data-anim="fade">
+        <div class="hpillar"><strong>+10 ans</strong><span>d'expérience</span></div>
+        <div class="hpillar__sep" aria-hidden="true"></div>
+        <div class="hpillar"><strong>4 activités</strong><span>en un seul lieu</span></div>
+        <div class="hpillar__sep" aria-hidden="true"></div>
+        <div class="hpillar"><strong>Ouvert 7j/7</strong><span>dès 6h du matin</span></div>
+      </div>
+      <div class="hero__status" data-anim="fade">
+        <span class="sdot" id="sdot"></span>
+        <span id="stext">Station ouverte</span>
+      </div>
+    </div>
+    <div class="hero__gauge" aria-hidden="true">
+      <svg class="gauge-svg" viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="gg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#C44A00"/>
+            <stop offset="100%" stop-color="#FF7A2B"/>
+          </linearGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(245,97,15,.06)" stroke-width="1"/>
+        <circle cx="100" cy="100" r="64" fill="rgba(245,97,15,.03)" stroke="rgba(245,97,15,.08)" stroke-width="1"/>
+        <circle cx="100" cy="100" r="75" fill="none" stroke="rgba(245,97,15,.1)" stroke-width="4" stroke-linecap="round"/>
+        <circle class="g-fill" id="g-fill" cx="100" cy="100" r="75" fill="none" stroke="url(#gg)" stroke-width="4" stroke-linecap="round" stroke-dasharray="471" stroke-dashoffset="471" transform="rotate(-220 100 100)" filter="url(#glow)"/>
+        <g stroke="rgba(245,97,15,.2)" stroke-width="1">
+          <line x1="100" y1="22" x2="100" y2="30" transform="rotate(-220 100 100)"/>
+          <line x1="100" y1="22" x2="100" y2="30" transform="rotate(-165 100 100)"/>
+          <line x1="100" y1="22" x2="100" y2="30" transform="rotate(-110 100 100)"/>
+          <line x1="100" y1="22" x2="100" y2="30" transform="rotate(-55 100 100)"/>
+          <line x1="100" y1="22" x2="100" y2="30" transform="rotate(0 100 100)"/>
+        </g>
+      </svg>
+      <div class="gauge-inner">
+        <div class="gauge-pct" id="gauge-pct">0%</div>
+        <div class="gauge-lbl">PLEIN</div>
+        <div class="gauge-prices">
+          <div class="gauge-p"><span>SP95</span><strong>800F</strong></div>
+          <div class="gauge-p"><span>GASOIL</span><strong>700F</strong></div>
+          <div class="gauge-p"><span>GPL</span><strong>500F</strong></div>
+        </div>
+      </div>
+      <div class="hero__ring-a" aria-hidden="true"></div>
+      <div class="hero__ring-b" aria-hidden="true"></div>
+    </div>
+  </div>
+  <button type="button" class="hero__scroll" id="hero-scroll" aria-label="Défiler vers le bas">
+    <span>Découvrir</span><span class="hero__scroll-bar"></span>
+  </button>
+</section>
+
+<!-- FEATURE SLIDER -->
+<section class="fslider" aria-label="Nos activités">
+  <div class="fslider__track">
+    <div class="fcard fcard--active">
+      <div class="fcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <p class="fcard__cat">STATION</p>
+      <h3 class="fcard__title">Ouvert 7 jours sur 7</h3>
+    </div>
+    <a href="carwash.html" class="fcard">
+      <div class="fcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
+      <p class="fcard__cat">CAR WASH</p>
+      <h3 class="fcard__title">1er Car Wash moderne du Mali</h3>
+    </a>
+    <a href="supermarche.html" class="fcard">
+      <div class="fcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
+      <p class="fcard__cat">SUPERMARCHÉ</p>
+      <h3 class="fcard__title">TERENA Market — bientôt</h3>
+    </a>
+    <div class="fcard">
+      <div class="fcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+      <p class="fcard__cat">PAIEMENT</p>
+      <h3 class="fcard__title">Orange Money · Moov · Cash</h3>
+    </div>
+    <div class="fcard">
+      <div class="fcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+      <p class="fcard__cat">MÉCANIQUE</p>
+      <h3 class="fcard__title">Petite mécanique gratuite</h3>
+    </div>
+    <a href="entreprises.html" class="fcard">
+      <div class="fcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <p class="fcard__cat">ENTREPRISES</p>
+      <h3 class="fcard__title">Facturation mensuelle flotte</h3>
+    </a>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-label="Informations en direct">
+  <div class="ticker__track" aria-hidden="true">
+    <span class="ti">Sans Plomb 95 — <strong>800 FCFA/L</strong> <b>◆</b></span>
+    <span class="ti">Gasoil — <strong>700 FCFA/L</strong> <b>◆</b></span>
+    <span class="ti">GPL — <strong>500 FCFA/L</strong> <b>◆</b></span>
+    <span class="ti">Car Wash · Premier au Mali <b>◆</b></span>
+    <span class="ti">TERENA Market · Ouverture prochaine <b>◆</b></span>
+    <span class="ti">Compte Entreprise · Facturation fin de mois <b>◆</b></span>
+    <span class="ti">Orange Money · Moov · Cash <b>◆</b></span>
+    <span class="ti">Kalaban-coro, Bamako · +223 76 75 24 29 <b>◆</b></span>
+    <span class="ti">Sans Plomb 95 — <strong>800 FCFA/L</strong> <b>◆</b></span>
+    <span class="ti">Gasoil — <strong>700 FCFA/L</strong> <b>◆</b></span>
+    <span class="ti">GPL — <strong>500 FCFA/L</strong> <b>◆</b></span>
+    <span class="ti">Car Wash · Premier au Mali <b>◆</b></span>
+    <span class="ti">TERENA Market · Ouverture prochaine <b>◆</b></span>
+    <span class="ti">Compte Entreprise · Facturation fin de mois <b>◆</b></span>
+    <span class="ti">Orange Money · Moov · Cash <b>◆</b></span>
+    <span class="ti">Kalaban-coro, Bamako · +223 76 75 24 29 <b>◆</b></span>
+  </div>
+</div>
+
+<!-- CONFIANCE & PARTENAIRES -->
+<section class="trust" aria-label="Marques et paiements acceptés">
+  <div class="trust__inner">
+    <div class="tlogo tlogo--total">
+      <svg viewBox="0 0 36 36" width="28" height="28" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#E31818"/><text x="18" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="900" fill="#fff">T</text></svg>
+      <div><span class="tlogo__t">TOTAL</span><span class="tlogo__s">Carburant certifié</span></div>
+    </div>
+    <div class="tlogo__sep" aria-hidden="true"></div>
+    <div class="tlogo tlogo--shell">
+      <svg viewBox="0 0 36 36" width="28" height="28" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#F9C400"/><text x="18" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="900" fill="#D71920">S</text></svg>
+      <div><span class="tlogo__t">SHELL</span><span class="tlogo__s">Huiles & lubrifiants</span></div>
+    </div>
+    <div class="tlogo__sep" aria-hidden="true"></div>
+    <div class="tlogo tlogo--om">
+      <svg viewBox="0 0 36 36" width="28" height="28" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#FF7900"/><text x="18" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="900" fill="#fff">OM</text></svg>
+      <div><span class="tlogo__t">Orange Money</span><span class="tlogo__s">Paiement mobile</span></div>
+    </div>
+    <div class="tlogo__sep" aria-hidden="true"></div>
+    <div class="tlogo tlogo--mv">
+      <svg viewBox="0 0 36 36" width="28" height="28" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#0077B6"/><text x="18" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="900" fill="#fff">MM</text></svg>
+      <div><span class="tlogo__t">Moov Money</span><span class="tlogo__s">Paiement mobile</span></div>
+    </div>
+    <div class="tlogo__sep" aria-hidden="true"></div>
+    <div class="tlogo">
+      <svg viewBox="0 0 36 36" width="28" height="28" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="rgba(245,97,15,.15)" stroke="rgba(245,97,15,.4)" stroke-width="1.5"/><text x="18" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="900" fill="#F5610F">2014</text></svg>
+      <div><span class="tlogo__t">Depuis 2014</span><span class="tlogo__s">Certifié & reconnu</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="metrics" aria-label="Chiffres clés">
+  <div class="wrap">
+    <div class="metrics__row">
+      <div class="met" data-count="10" data-sfx="+ ans"><div class="met__n">0</div><div class="met__l">Expérience</div></div>
+      <div class="met__sep" aria-hidden="true"></div>
+      <div class="met" data-count="4" data-sfx=" activités"><div class="met__n">0</div><div class="met__l">Sur le site</div></div>
+      <div class="met__sep" aria-hidden="true"></div>
+      <div class="met" data-count="12" data-sfx=" pistes"><div class="met__n">0</div><div class="met__l">Carburant</div></div>
+      <div class="met__sep" aria-hidden="true"></div>
+      <div class="met" data-count="7" data-sfx="j/7"><div class="met__n">0</div><div class="met__l">Ouverture</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES BENTO -->
+<section class="bento-sec section" id="services">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <p class="eyebrow">Nos Activités</p>
+      <h2 class="sec-title">Tout en un seul lieu,<br><em>à Kalaban-coro</em></h2>
+    </header>
+    <div class="bento">
+
+      <!-- 01 CARBURANTS — grand -->
+      <article class="bcard bcard--fuel">
+        <div class="bcard__bg" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1654334036171-e01e52b2ce8e?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy">
+        </div>
+        <div class="bcard__body">
+          <span class="bcard__n" aria-hidden="true">01</span>
+          <div class="bcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22" aria-hidden="true"><rect x="2" y="7" width="9" height="14" rx="1"/><path d="M11 9h3l2 4h3a1 1 0 011 1v4a1 1 0 01-1 1h-1M5 21H3"/><circle cx="6" cy="21" r="1"/><circle cx="17" cy="21" r="1"/><path d="M2 3h9v4H2z"/></svg></div>
+          <h3 class="bcard__title">Carburants</h3>
+          <p class="bcard__desc">SP95, Gasoil, Diesel Premium, GPL — 12 pistes, 7j/7, qualité certifiée.</p>
+          <div class="bcard__prices">
+            <span>SP95 <strong>800 F</strong></span>
+            <span>Gasoil <strong>700 F</strong></span>
+            <span>GPL <strong>500 F</strong></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 CAR WASH -->
+      <article class="bcard bcard--wash">
+        <div class="bcard__bg" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=800&q=80&auto=format&fit=crop" alt="" loading="lazy">
+        </div>
+        <div class="bcard__body">
+          <span class="bcard__n" aria-hidden="true">02</span>
+          <div class="bcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
+          <h3 class="bcard__title">Car Wash</h3>
+          <p class="bcard__desc">1er car wash moderne du Mali. Équipements européens, séchage auto, 15 min.</p>
+          <a href="carwash.html" class="bcard__link">Découvrir →</a>
+        </div>
+      </article>
+
+      <!-- 03 SUPERMARCHÉ -->
+      <article class="bcard bcard--mkt">
+        <div class="bcard__bg" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=800&q=80&auto=format&fit=crop" alt="" loading="lazy">
+        </div>
+        <div class="bcard__body">
+          <span class="bcard__n" aria-hidden="true">03</span>
+          <div class="bcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
+          <h3 class="bcard__title">TERENA Market</h3>
+          <p class="bcard__desc">Supermarché premium — produits locaux & importés. Ouverture prochaine.</p>
+          <a href="supermarche.html" class="bcard__link">Être notifié →</a>
+        </div>
+      </article>
+
+      <!-- 04 COMPTE ENTREPRISE — large -->
+      <article class="bcard bcard--biz">
+        <div class="bcard__bg" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1495603889488-42d1d66e5523?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy">
+        </div>
+        <div class="bcard__body">
+          <span class="bcard__n" aria-hidden="true">04</span>
+          <div class="bcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <h3 class="bcard__title">Compte Entreprise</h3>
+          <p class="bcard__desc">Alimentez votre flotte sans avance de trésorerie. Facturation mensuelle, relevés détaillés, tarifs préférentiels.</p>
+          <a href="entreprises.html" class="bcard__link">Ouvrir un compte →</a>
+        </div>
+      </article>
+
+      <!-- 05 MÉCANIQUE -->
+      <article class="bcard bcard--mec">
+        <div class="bcard__bg" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=700&q=80&auto=format&fit=crop" alt="" loading="lazy">
+        </div>
+        <div class="bcard__body">
+          <span class="bcard__n" aria-hidden="true">05</span>
+          <div class="bcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22" aria-hidden="true"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+          <h3 class="bcard__title">Petite Mécanique</h3>
+          <p class="bcard__desc">Gonflage, niveaux huile & frein vérifiés. Offert à chaque passage.</p>
+          <span class="bcard__badge">Gratuit</span>
+        </div>
+      </article>
+
+      <!-- 06 PAIEMENT -->
+      <article class="bcard bcard--pay">
+        <div class="bcard__body bcard__body--accent">
+          <span class="bcard__n" aria-hidden="true">06</span>
+          <div class="bcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <h3 class="bcard__title">Paiement Flexible</h3>
+          <p class="bcard__desc">Orange Money, Moov Money, espèces. Nous nous adaptons à votre mode de paiement.</p>
+          <span class="bcard__badge">3 options</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- CARBURANTS BOARD -->
+<section class="fuels section" id="carburants">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <p class="eyebrow">Nos Carburants</p>
+      <h2 class="sec-title">Prix du jour —<br><em>transparents et compétitifs</em></h2>
+    </header>
+    <div class="board reveal">
+      <div class="board__top">
+        <span class="board__live"><span class="board__dot" aria-hidden="true"></span>Prix en direct</span>
+        <span class="board__date" id="board-date"></span>
+      </div>
+      <div class="board__body">
+        <div class="brow"><span class="brow__dot brow__dot--g" aria-hidden="true"></span><span class="brow__name">Sans Plomb 95</span><span class="brow__type">Essence · Véhicules particuliers</span><span class="brow__price">800<small>FCFA/L</small></span></div>
+        <div class="brow"><span class="brow__dot brow__dot--y" aria-hidden="true"></span><span class="brow__name">Gasoil</span><span class="brow__type">Diesel · Standard</span><span class="brow__price">700<small>FCFA/L</small></span></div>
+        <div class="brow"><span class="brow__dot brow__dot--b" aria-hidden="true"></span><span class="brow__name">Diesel Premium</span><span class="brow__type">Diesel · Haute performance</span><span class="brow__price">680<small>FCFA/L</small></span></div>
+        <div class="brow"><span class="brow__dot brow__dot--r" aria-hidden="true"></span><span class="brow__name">GPL</span><span class="brow__type">Gaz de Pétrole Liquéfié</span><span class="brow__price">500<small>FCFA/L</small></span></div>
+      </div>
+      <p class="board__note">* Prix indicatifs en FCFA, peuvent varier selon les fluctuations du marché national.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gal-sec section" id="galerie">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <p class="eyebrow">Notre Station</p>
+      <h2 class="sec-title">Venez nous rendre <em>visite</em></h2>
+    </header>
+  </div>
+  <div class="gal-grid">
+    <div class="gi gi--tall"><img src="https://images.unsplash.com/photo-1695561324569-5e47c76dc0a3?w=800&q=82&auto=format&fit=crop" alt="TERENA OIL — Station de nuit" loading="lazy"><div class="gi__cap"><span>Station de nuit</span></div></div>
+    <div class="gi"><img src="https://images.unsplash.com/photo-1758362066807-39825a297aa4?w=620&q=82&auto=format&fit=crop" alt="Pompe à carburant TERENA OIL" loading="lazy"><div class="gi__cap"><span>Carburants</span></div></div>
+    <div class="gi"><img src="https://images.unsplash.com/photo-1700165841919-8ca5cb874c98?w=620&q=82&auto=format&fit=crop" alt="Ravitaillement à la station" loading="lazy"><div class="gi__cap"><span>Service client</span></div></div>
+    <div class="gi gi--wide"><img src="https://images.unsplash.com/photo-1562757219-2ffc897f99e3?w=1200&q=82&auto=format&fit=crop" alt="Station TERENA OIL — Bamako" loading="lazy"><div class="gi__cap"><span>TERENA OIL · Bamako</span></div></div>
+    <div class="gi"><img src="https://images.unsplash.com/photo-1654334036171-e01e52b2ce8e?w=620&q=82&auto=format&fit=crop" alt="Pistes de ravitaillement" loading="lazy"><div class="gi__cap"><span>12 pistes disponibles</span></div></div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="testi section">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <p class="eyebrow">Ce Qu'ils Disent</p>
+      <h2 class="sec-title">La confiance de nos <em>clients</em></h2>
+    </header>
+    <div class="swiper tswiper reveal">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><div class="tc"><div class="tc__stars" aria-label="5 étoiles">★★★★★</div><blockquote class="tc__q">"La meilleure station de Kalaban-coro. Personnel souriant, service rapide."</blockquote><div class="tc__auth"><div class="tc__av" aria-hidden="true">A</div><div><p class="tc__name">Amadou Coulibaly</p><p class="tc__role">Client fidèle depuis 2016</p></div></div></div></div>
+        <div class="swiper-slide"><div class="tc"><div class="tc__stars" aria-label="5 étoiles">★★★★★</div><blockquote class="tc__q">"Compte entreprise pour ma flotte de 8 véhicules. Relevés impeccables chaque fin de mois !"</blockquote><div class="tc__auth"><div class="tc__av" aria-hidden="true">F</div><div><p class="tc__name">Fatoumata Diallo</p><p class="tc__role">Gérante société de transport</p></div></div></div></div>
+        <div class="swiper-slide"><div class="tc"><div class="tc__stars" aria-label="5 étoiles">★★★★★</div><blockquote class="tc__q">"Je passe chaque jour. Carburant de qualité, prix stables, Orange Money accepté."</blockquote><div class="tc__auth"><div class="tc__av" aria-hidden="true">S</div><div><p class="tc__name">Seydou Koné</p><p class="tc__role">Chauffeur de taxi, Bamako</p></div></div></div></div>
+        <div class="swiper-slide"><div class="tc"><div class="tc__stars" aria-label="5 étoiles">★★★★★</div><blockquote class="tc__q">"Notre ONG a ouvert un compte entreprise. Le suivi mensuel est parfait pour notre comptabilité."</blockquote><div class="tc__auth"><div class="tc__av" aria-hidden="true">K</div><div><p class="tc__name">Kadiatou Bah</p><p class="tc__role">Coordinatrice ONG, Bamako</p></div></div></div></div>
+      </div>
+      <div class="swiper-pagination tpagi"></div>
+      <div class="tnav">
+        <button type="button" class="swiper-button-prev tprev" aria-label="Précédent"></button>
+        <button type="button" class="swiper-button-next tnext" aria-label="Suivant"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about section" id="about">
+  <div class="wrap">
+    <div class="about__grid">
+      <div class="about__l reveal">
+        <p class="eyebrow">Notre Histoire</p>
+        <h2 class="about__h">Plus de <em>10 ans</em><br>au service de<br>Bamako</h2>
+        <p class="about__p">Depuis 2014, <strong>TERENA OIL</strong> est devenu la référence de Kalaban-coro — reconnu pour la qualité de ses carburants, la propreté de ses installations et la fiabilité de son équipe.</p>
+        <p class="about__p">Aujourd'hui, nous développons notre complexe avec le <strong>Car Wash le plus moderne du Mali</strong> et un <strong>supermarché premium</strong> pour offrir une expérience complète à chaque client.</p>
+        <div class="about__tags">
+          <span class="atag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Carburants certifiés</span>
+          <span class="atag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Car Wash moderne</span>
+          <span class="atag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Supermarché premium</span>
+          <span class="atag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Compte entreprise</span>
+        </div>
+        <a href="contact.html" class="btn btn--orange about__cta">Nous Contacter →</a>
+      </div>
+      <div class="about__r reveal">
+        <div class="about__photo">
+          <img src="https://images.unsplash.com/photo-1487803556724-cb9f0b8151d1?w=900&q=82&auto=format&fit=crop" alt="TERENA OIL — Station service Bamako" loading="lazy">
+          <div class="about__badge">
+            <span class="about__badge-y">2014</span>
+            <span class="about__badge-l">Fondée à Bamako</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq section" id="faq">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <p class="eyebrow">Questions fréquentes</p>
+      <h2 class="sec-title">Tout ce que vous <em>souhaitez savoir</em></h2>
+    </header>
+    <div class="faq__list">
+
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">
+          <span>Quels carburants proposez-vous et à quel prix ?</span>
+          <svg class="faq__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq__a" aria-hidden="true"><div class="faq__a-in">
+          <p>Nous proposons quatre carburants : <strong>Sans Plomb 95 à 800 FCFA/L</strong>, <strong>Gasoil à 700 FCFA/L</strong>, <strong>Diesel Premium à 680 FCFA/L</strong> et <strong>GPL à 500 FCFA/L</strong>. Nos 12 pistes de ravitaillement permettent un service rapide sans file d'attente.</p>
+        </div></div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">
+          <span>Comment ouvrir un compte entreprise ?</span>
+          <svg class="faq__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq__a" aria-hidden="true"><div class="faq__a-in">
+          <p>Remplissez le formulaire sur la page <a href="entreprises.html">Entreprises</a>, ou contactez-nous sur WhatsApp. Il vous faut le <strong>registre de commerce</strong>, une <strong>pièce d'identité</strong> du gérant et le <strong>nombre de véhicules</strong>. L'activation se fait en moins de 48h.</p>
+        </div></div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">
+          <span>Quels sont les tarifs du Car Wash ?</span>
+          <svg class="faq__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq__a" aria-hidden="true"><div class="faq__a-in">
+          <p>4 formules disponibles : <strong>Lavage Extérieur — 3 000 FCFA</strong>, <strong>Lavage Complet — 7 000 FCFA</strong>, <strong>Polish &amp; Cire — 6 000 FCFA</strong> et <strong>Détailing Complet — 15 000 FCFA</strong>. Chaque lavage est effectué en moins de 15 minutes.</p>
+        </div></div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">
+          <span>Quels sont vos horaires d'ouverture ?</span>
+          <svg class="faq__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq__a" aria-hidden="true"><div class="faq__a-in">
+          <p>La station est ouverte <strong>du lundi au samedi de 6h à 22h</strong> et <strong>le dimanche de 7h à 20h</strong>. Nous sommes ouverts les jours fériés. Le Car Wash fonctionne de 7h–20h (lun–sam) et 8h–18h (dim).</p>
+        </div></div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">
+          <span>Quels modes de paiement acceptez-vous ?</span>
+          <svg class="faq__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq__a" aria-hidden="true"><div class="faq__a-in">
+          <p>Nous acceptons les <strong>espèces</strong>, <strong>Orange Money</strong> et <strong>Moov Money</strong>. Pour les comptes entreprises, le <strong>virement bancaire</strong> est également disponible. Aucun frais supplémentaire sur les paiements mobile money.</p>
+        </div></div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">
+          <span>Où êtes-vous situés exactement ?</span>
+          <svg class="faq__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq__a" aria-hidden="true"><div class="faq__a-in">
+          <p>TERENA OIL est situé à <strong>Kalaban-coro, Bamako, Mali</strong>. Appelez-nous au <a href="tel:+22376752429">+223 76 75 24 29</a> pour des indications précises, ou cherchez <em>"TERENA OIL Bamako"</em> sur Google Maps.</p>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final" aria-label="Nous rejoindre">
+  <div class="cta-final__bg" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1562757219-2ffc897f99e3?w=1920&q=75&auto=format&fit=crop" alt="" loading="lazy">
+  </div>
+  <div class="wrap cta-final__inner">
+    <p class="cta-final__eye">Depuis 2014 à Kalaban-coro, Bamako</p>
+    <h2 class="cta-final__h">Rejoignez les milliers de clients<br>qui nous font confiance <em>chaque jour</em></h2>
+    <p class="cta-final__sub">Station-service, Car Wash, Supermarché et compte entreprise — tout en un seul lieu.</p>
+    <div class="cta-final__btns">
+      <a href="contact.html" class="btn btn--orange btn--lg mag-btn">Nous Contacter →</a>
+      <a href="https://wa.me/22376752429" class="btn btn--ghost-white btn--lg mag-btn" target="_blank" rel="noopener noreferrer">WhatsApp →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">TERENA <em>OIL</em></a>
+        <p class="footer__sub">Votre complexe de référence à Bamako depuis 2014.</p>
+        <p class="footer__addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="12" height="12" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Kalaban-coro, Bamako, Mali</p>
+      </div>
+      <div class="footer__cols">
+        <div class="footer__col">
+          <p class="footer__col-h">Pages</p>
+          <nav aria-label="Pied de page">
+            <a href="index.html">Accueil</a>
+            <a href="carwash.html">Car Wash</a>
+            <a href="supermarche.html">Supermarché</a>
+            <a href="entreprises.html">Entreprises</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        <div class="footer__col">
+          <p class="footer__col-h">Services</p>
+          <span class="fl">Carburants SP95 · Gasoil · GPL</span>
+          <span class="fl">Car Wash moderne</span>
+          <span class="fl">Supermarché TERENA Market</span>
+          <span class="fl">Compte Entreprise mensuel</span>
+        </div>
+        <div class="footer__col">
+          <p class="footer__col-h">Contact</p>
+          <a href="tel:+22376752429">+223 76 75 24 29</a>
+          <a href="mailto:terenaoil0@gmail.com">terenaoil0@gmail.com</a>
+          <a href="https://wa.me/22376752429" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a href="dashboard/index.html">Espace Gestion</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bot">
+      <p class="footer__copy">© 2026 TERENA OIL — Tous droits réservés.</p>
+      <p class="footer__live"><span class="ldot" aria-hidden="true"></span>Lun–Sam : 6h–22h &nbsp;·&nbsp; Dim : 7h–20h</p>
+    </div>
+  </div>
+</footer>
+
+<button type="button" class="btt" id="btt" aria-label="Retour en haut"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg></button>
+
+<script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="js/main.js"></script>
+
+<!-- WHATSAPP FLOTTANT -->
+<a href="https://wa.me/22376752429?text=Bonjour%20TERENA%20OIL%2C%20j%27ai%20une%20question." class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Nous contacter sur WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span class="wa-float__txt">WhatsApp</span>
+</a>
+</body>
+</html>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espace Gestion — TERENA OIL</title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<link rel="icon" href="../images/logo.jpg" type="image/jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#F5610F;--primary-lt:rgba(245,97,15,.1);
+  --blue:#1E6FBE;--blue-lt:rgba(30,111,190,.1);
+  --dark:#1A1A1A;--sidebar-bg:#111111;--sidebar-w:240px;
+  --bg:#F4F5F7;--card:#fff;--border:rgba(0,0,0,.09);--muted:#8A8F98;
+  --green:#16a34a;--green-lt:rgba(22,163,74,.1);
+  --gold:#d97706;--gold-lt:rgba(217,119,6,.1);
+  --red:#dc2626;--red-lt:rgba(220,38,38,.1);
+  --f:'Poppins',system-ui,sans-serif;--r:12px;
+  --sh:0 1px 3px rgba(0,0,0,.07),0 4px 16px rgba(0,0,0,.04);
+}
+body{font-family:var(--f);background:var(--bg);color:var(--dark);display:flex;min-height:100vh;overflow-x:hidden}
+
+/* ── SIDEBAR ── */
+.sidebar{width:var(--sidebar-w);background:var(--sidebar-bg);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:100;transition:transform .28s cubic-bezier(.4,0,.2,1)}
+.sb-logo{display:flex;align-items:center;gap:10px;padding:20px 16px 16px;border-bottom:1px solid rgba(255,255,255,.06);text-decoration:none;color:#fff}
+.sb-logo__mark{width:34px;height:34px;border-radius:8px;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#fff;flex-shrink:0}
+.sb-logo__txt{font-size:.8rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.sb-logo__txt span{color:var(--primary)}
+.sb-nav{flex:1;padding:14px 0;overflow-y:auto}
+.sb-sect{padding:0 10px}
+.sb-lbl{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.26);padding:10px 8px 5px}
+.sn{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;cursor:pointer;color:rgba(255,255,255,.5);font-size:.83rem;font-weight:500;background:none;border:none;width:100%;text-align:left;font-family:var(--f);transition:background .18s,color .18s;margin-bottom:2px;text-decoration:none}
+.sn:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.85)}
+.sn.active{background:var(--primary-lt);color:var(--primary)}
+.sn.active .sn-ico{color:var(--primary)}
+.sn-ico{width:17px;height:17px;color:rgba(255,255,255,.34);flex-shrink:0;transition:color .18s}
+.sn-badge{margin-left:auto;font-size:.62rem;font-weight:700;background:var(--primary);color:#fff;padding:1px 7px;border-radius:999px}
+.sb-div{height:1px;background:rgba(255,255,255,.06);margin:8px 10px}
+.sb-foot{padding:14px 10px;border-top:1px solid rgba(255,255,255,.06)}
+.sb-user{display:flex;align-items:center;gap:9px;padding:8px;border-radius:8px;cursor:pointer;transition:background .18s}
+.sb-user:hover{background:rgba(255,255,255,.06)}
+.sb-av{width:32px;height:32px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#fff;flex-shrink:0}
+.sb-uname{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-urole{font-size:.66rem;color:rgba(255,255,255,.36)}
+
+/* ── MAIN ── */
+.db-main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-height:100vh}
+.topbar{height:60px;background:var(--card);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 26px;position:sticky;top:0;z-index:50}
+.tb-l{display:flex;align-items:center;gap:12px}
+.tb-burger{display:none;width:34px;height:34px;border:none;background:none;cursor:pointer;border-radius:7px;color:var(--dark);align-items:center;justify-content:center;transition:background .18s}
+.tb-burger:hover{background:var(--bg)}
+.tb-title{font-size:.95rem;font-weight:600}
+.tb-r{display:flex;align-items:center;gap:14px}
+.tb-date{font-size:.75rem;color:var(--muted);background:var(--bg);padding:4px 13px;border-radius:999px;border:1px solid var(--border)}
+.tb-notif{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--card);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);position:relative;transition:border-color .18s}
+.tb-notif:hover{border-color:var(--dark)}
+.ndot{position:absolute;top:6px;right:7px;width:6px;height:6px;border-radius:50%;background:var(--primary);border:1.5px solid #fff}
+.tb-av{width:32px;height:32px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#fff;cursor:pointer}
+
+/* ── CONTENT ── */
+.db-content{flex:1;padding:24px}
+.db-panel{display:none}
+.db-panel.active{display:block}
+
+/* ── KPI ── */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px 20px 16px;position:relative;overflow:hidden;box-shadow:var(--sh)}
+.kpi-bar{position:absolute;top:0;left:0;width:3px;height:100%}
+.kpi-bar--or{background:var(--primary)}
+.kpi-bar--bl{background:var(--blue)}
+.kpi-bar--gr{background:var(--green)}
+.kpi-bar--go{background:var(--gold)}
+.kpi-ico{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.kpi-ico--or{background:var(--primary-lt);color:var(--primary)}
+.kpi-ico--bl{background:var(--blue-lt);color:var(--blue)}
+.kpi-ico--gr{background:var(--green-lt);color:var(--green)}
+.kpi-ico--go{background:var(--gold-lt);color:var(--gold)}
+.kpi-val{font-size:1.6rem;font-weight:700;line-height:1;margin-bottom:5px}
+.kpi-val small{font-size:.85rem;font-weight:500}
+.kpi-lbl{font-size:.73rem;color:var(--muted);font-weight:500}
+.kpi-delta{display:inline-flex;align-items:center;gap:3px;font-size:.68rem;font-weight:600;margin-top:7px;padding:2px 7px;border-radius:999px}
+.kpi-delta--up{background:var(--green-lt);color:var(--green)}
+.kpi-delta--dn{background:var(--red-lt);color:var(--red)}
+
+/* ── GRID ── */
+.ov-g{display:grid;gap:16px;margin-bottom:16px}
+.ov-g--64{grid-template-columns:3fr 2fr}
+.ov-g--11{grid-template-columns:1fr 1fr}
+
+/* ── CARD ── */
+.dbc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;box-shadow:var(--sh)}
+.dbc-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.dbc-title{font-size:.86rem;font-weight:600}
+.dbc-sub{font-size:.7rem;color:var(--muted);margin-top:2px}
+.dbc-act{font-size:.73rem;color:var(--primary);font-weight:600;cursor:pointer;border:none;background:none;padding:4px 11px;border-radius:6px;font-family:var(--f);transition:background .18s}
+.dbc-act:hover{background:var(--primary-lt)}
+
+/* ── BAR CHART ── */
+.chart-bars{display:flex;gap:10px;border-bottom:1px solid var(--border);margin-bottom:8px}
+.chart-col{flex:1;height:150px;display:flex;flex-direction:column;justify-content:flex-end}
+.chart-bar{width:100%;border-radius:5px 5px 0 0;background:var(--primary-lt);cursor:pointer;position:relative;transition:opacity .18s}
+.chart-bar:hover{opacity:.8}
+.chart-bar:hover::after{content:attr(data-v);position:absolute;bottom:calc(100% + 5px);left:50%;transform:translateX(-50%);font-size:.62rem;font-weight:600;background:var(--dark);color:#fff;padding:3px 7px;border-radius:5px;white-space:nowrap;pointer-events:none}
+.chart-bar--cur{background:var(--primary)}
+.chart-lbls{display:flex;gap:10px}
+.chart-lbl{flex:1;text-align:center;font-size:.63rem;color:var(--muted);font-weight:500}
+.chart-lbl--cur{color:var(--primary);font-weight:600}
+
+/* ── MINI TABLE ── */
+.mt{width:100%;border-collapse:collapse}
+.mt th{font-size:.66rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;padding:0 0 9px;text-align:left;border-bottom:1px solid var(--border)}
+.mt td{font-size:.8rem;padding:10px 0;border-bottom:1px solid var(--border);vertical-align:middle}
+.mt tr:last-child td{border-bottom:none}
+.mt .co{font-weight:600}
+.mt .co-s{font-size:.67rem;color:var(--muted)}
+
+/* ── BADGE ── */
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:.67rem;font-weight:600;padding:3px 9px;border-radius:999px}
+.badge::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor}
+.badge--gr{background:var(--green-lt);color:var(--green)}
+.badge--or{background:var(--primary-lt);color:var(--primary)}
+.badge--rd{background:var(--red-lt);color:var(--red)}
+
+/* ── CW SLOTS ── */
+.cw-slots{display:flex;flex-direction:column;gap:9px}
+.cw-slot{display:flex;align-items:center;gap:11px;padding:9px 13px;border-radius:8px;background:var(--bg);border-left:3px solid transparent}
+.cw-slot--done{border-left-color:var(--green);opacity:.72}
+.cw-slot--act{border-left-color:var(--blue);background:var(--blue-lt)}
+.cw-slot--wait{border-left-color:var(--border)}
+.cw-time{font-size:.73rem;font-weight:700;color:var(--muted);min-width:40px}
+.cw-slot--act .cw-time{color:var(--blue)}
+.cw-inf{flex:1}
+.cw-car{font-size:.8rem;font-weight:600}
+.cw-plate{font-size:.66rem;color:var(--muted)}
+.cw-st{font-size:.67rem;font-weight:600}
+.cw-slot--done .cw-st{color:var(--green)}
+.cw-slot--act .cw-st{color:var(--blue)}
+.cw-slot--wait .cw-st{color:var(--muted)}
+
+/* ── ALERTS ── */
+.al-list{display:flex;flex-direction:column;gap:9px}
+.al-item{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border-radius:8px;background:var(--bg)}
+.al-item--warn{background:var(--gold-lt)}
+.al-item--info{background:var(--blue-lt)}
+.al-ico{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.al-ico--warn{background:var(--gold-lt);color:var(--gold)}
+.al-ico--info{background:var(--blue-lt);color:var(--blue)}
+.al-title{font-size:.78rem;font-weight:600;margin-bottom:1px}
+.al-desc{font-size:.7rem;color:var(--muted)}
+
+/* ── FULL TABLE ── */
+.tbl-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.tbl-s{position:relative;flex:1;max-width:300px}
+.tbl-s-ico{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.tbl-s input{width:100%;padding:8px 11px 8px 36px;border:1px solid var(--border);border-radius:8px;font-family:var(--f);font-size:.82rem;background:var(--card);color:var(--dark);outline:none;transition:border-color .18s}
+.tbl-s input:focus{border-color:var(--primary)}
+.filt-btns{display:flex;gap:6px;flex-wrap:wrap}
+.fb{padding:6px 13px;border-radius:999px;border:1px solid var(--border);background:var(--card);font-family:var(--f);font-size:.73rem;font-weight:500;cursor:pointer;color:var(--muted);transition:all .18s}
+.fb:hover,.fb.active{border-color:var(--primary);color:var(--primary);background:var(--primary-lt)}
+.fb.active{font-weight:600}
+.dbt{width:100%;border-collapse:collapse}
+.dbt thead th{font-size:.68rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;padding:9px 13px;text-align:left;border-bottom:2px solid var(--border);background:var(--bg)}
+.dbt tbody td{padding:12px 13px;font-size:.81rem;border-bottom:1px solid var(--border);vertical-align:middle}
+.dbt tbody tr:last-child td{border-bottom:none}
+.dbt tbody tr:hover td{background:rgba(245,97,15,.025)}
+.ent-n{font-weight:600}
+.ent-s{font-size:.68rem;color:var(--muted)}
+.ta{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:6px;font-size:.7rem;font-weight:600;border:1px solid var(--border);background:none;cursor:pointer;color:var(--dark);font-family:var(--f);transition:all .18s}
+.ta:hover{border-color:var(--primary);color:var(--primary)}
+.ta+.ta{margin-left:5px}
+
+/* ── CW WEEK ── */
+.cw-week{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:20px}
+.cw-day{border:1px solid var(--border);border-radius:9px;padding:10px 6px;text-align:center;cursor:pointer;transition:all .18s}
+.cw-day:hover{border-color:var(--primary)}
+.cw-day.today{border-color:var(--primary);background:var(--primary-lt)}
+.cw-dn{font-size:.6rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.07em}
+.cw-dnum{font-size:1.1rem;font-weight:700;margin:3px 0}
+.cw-day.today .cw-dnum{color:var(--primary)}
+.cw-dct{font-size:.63rem;color:var(--muted)}
+.cw-day.today .cw-dct{color:var(--primary);font-weight:600}
+
+/* ── SUPERMARCHE ── */
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:20px}
+.cat-c{border:1px solid var(--border);border-radius:9px;padding:16px 14px;display:flex;align-items:center;gap:12px;background:var(--card)}
+.cat-ico{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.cat-n{font-size:.8rem;font-weight:600;margin-bottom:2px}
+.cat-v{font-size:.72rem;color:var(--muted)}
+
+/* ── RAPPORTS ── */
+.rpt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.rpt-c{border:1px solid var(--border);border-radius:var(--r);padding:22px;background:var(--card);box-shadow:var(--sh)}
+.rpt-ico{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.rpt-t{font-size:.85rem;font-weight:600;margin-bottom:5px}
+.rpt-d{font-size:.73rem;color:var(--muted);line-height:1.5;margin-bottom:14px}
+.btn-s{display:inline-flex;align-items:center;gap:6px;padding:7px 15px;border-radius:7px;font-family:var(--f);font-size:.76rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:none;color:var(--dark);transition:all .18s}
+.btn-s:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-lt)}
+.btn-s--p{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn-s--p:hover{background:#d9520d;border-color:#d9520d;color:#fff}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--dark);color:#fff;padding:11px 18px;border-radius:9px;font-size:.8rem;font-weight:500;display:flex;align-items:center;gap:9px;z-index:9999;transform:translateY(70px);opacity:0;transition:all .3s cubic-bezier(.4,0,.2,1);pointer-events:none;max-width:320px}
+.toast.show{transform:translateY(0);opacity:1}
+.toast-ico{color:var(--primary);flex-shrink:0}
+
+/* ── OVERLAY ── */
+.sb-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:90;opacity:0;transition:opacity .28s}
+.sb-ov.show{opacity:1}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .kpi-row{grid-template-columns:repeat(2,1fr)}
+  .ov-g--64,.ov-g--11{grid-template-columns:1fr}
+}
+@media(max-width:900px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .sb-ov{display:block}
+  .db-main{margin-left:0}
+  .tb-burger{display:flex}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .rpt-grid{grid-template-columns:1fr 1fr}
+  .cw-week{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:600px){
+  .db-content{padding:14px}
+  .kpi-row{grid-template-columns:1fr}
+  .tbl-bar{flex-direction:column;align-items:flex-start}
+  .tbl-s{max-width:100%}
+  .cat-grid{grid-template-columns:1fr}
+  .rpt-grid{grid-template-columns:1fr}
+  .cw-week{grid-template-columns:repeat(3,1fr)}
+  .topbar{padding:0 14px}
+  .tb-date{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="sb-ov" id="sbOv"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <a href="../index.html" class="sb-logo">
+    <div class="sb-logo__mark">T</div>
+    <div class="sb-logo__txt">TERENA <span>OIL</span></div>
+  </a>
+  <nav class="sb-nav" aria-label="Navigation">
+    <div class="sb-sect">
+      <p class="sb-lbl">Tableau de bord</p>
+      <button class="sn active" data-panel="overview">
+        <svg class="sn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Vue d'ensemble
+      </button>
+      <button class="sn" data-panel="entreprises">
+        <svg class="sn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Comptes Entreprises
+        <span class="sn-badge">12</span>
+      </button>
+      <button class="sn" data-panel="carwash">
+        <svg class="sn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+        Car Wash
+      </button>
+      <button class="sn" data-panel="supermarche">
+        <svg class="sn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Supermarché
+      </button>
+    </div>
+    <div class="sb-div"></div>
+    <div class="sb-sect">
+      <p class="sb-lbl">Gestion</p>
+      <button class="sn" data-panel="rapports">
+        <svg class="sn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Rapports
+      </button>
+    </div>
+    <div class="sb-div"></div>
+    <div class="sb-sect">
+      <a class="sn" href="../index.html">
+        <svg class="sn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+        Retour au site
+      </a>
+    </div>
+  </nav>
+  <div class="sb-foot">
+    <div class="sb-user">
+      <div class="sb-av">TG</div>
+      <div style="flex:1;min-width:0">
+        <div class="sb-uname">TERENA Gérant</div>
+        <div class="sb-urole">Administrateur</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="db-main">
+  <header class="topbar">
+    <div class="tb-l">
+      <button class="tb-burger" id="burgerBtn" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <h1 class="tb-title" id="pageTitle">Vue d'ensemble</h1>
+    </div>
+    <div class="tb-r">
+      <div class="tb-date">Jeu. 26 Juin 2026</div>
+      <div class="tb-notif">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15" aria-hidden="true"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+        <div class="ndot"></div>
+      </div>
+      <div class="tb-av">TG</div>
+    </div>
+  </header>
+
+  <div class="db-content">
+
+    <!-- ══ VUE D'ENSEMBLE ══ -->
+    <div class="db-panel active" id="panel-overview">
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="kpi-bar kpi-bar--or"></div>
+          <div class="kpi-ico kpi-ico--or"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div class="kpi-val">12</div>
+          <div class="kpi-lbl">Clients entreprises actifs</div>
+          <div><span class="kpi-delta kpi-delta--up">↑ +2 ce mois</span></div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-bar kpi-bar--bl"></div>
+          <div class="kpi-ico kpi-ico--bl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19" aria-hidden="true"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+          <div class="kpi-val">48 500 <small>L</small></div>
+          <div class="kpi-lbl">Volume carburant — Juin</div>
+          <div><span class="kpi-delta kpi-delta--up">↑ +5.4% vs Mai</span></div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-bar kpi-bar--gr"></div>
+          <div class="kpi-ico kpi-ico--gr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
+          <div class="kpi-val">34</div>
+          <div class="kpi-lbl">Réservations Car Wash — Semaine</div>
+          <div><span class="kpi-delta kpi-delta--up">↑ +8 vs sem. passée</span></div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-bar kpi-bar--go"></div>
+          <div class="kpi-ico kpi-ico--go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+          <div class="kpi-val">44.8M <small style="font-size:.65rem">FCFA</small></div>
+          <div class="kpi-lbl">CA estimé — Juin 2026</div>
+          <div><span class="kpi-delta kpi-delta--up">↑ +3.1% vs Mai</span></div>
+        </div>
+      </div>
+
+      <div class="ov-g ov-g--64">
+        <div class="dbc">
+          <div class="dbc-hd">
+            <div><div class="dbc-title">Volume carburant — 6 derniers mois</div><div class="dbc-sub">En litres · Entreprises + particuliers</div></div>
+          </div>
+          <div class="chart-bars">
+            <div class="chart-col"><div class="chart-bar" style="height:78%" data-v="38 000 L"></div></div>
+            <div class="chart-col"><div class="chart-bar" style="height:84%" data-v="41 000 L"></div></div>
+            <div class="chart-col"><div class="chart-bar" style="height:92%" data-v="44 500 L"></div></div>
+            <div class="chart-col"><div class="chart-bar" style="height:87%" data-v="42 000 L"></div></div>
+            <div class="chart-col"><div class="chart-bar" style="height:95%" data-v="46 000 L"></div></div>
+            <div class="chart-col"><div class="chart-bar chart-bar--cur" style="height:100%" data-v="48 500 L"></div></div>
+          </div>
+          <div class="chart-lbls">
+            <div class="chart-lbl">Jan</div><div class="chart-lbl">Fév</div><div class="chart-lbl">Mars</div>
+            <div class="chart-lbl">Avr</div><div class="chart-lbl">Mai</div><div class="chart-lbl chart-lbl--cur">Juin</div>
+          </div>
+        </div>
+        <div class="dbc">
+          <div class="dbc-hd">
+            <div><div class="dbc-title">Passages récents</div><div class="dbc-sub">Entreprises · Aujourd'hui</div></div>
+            <button class="dbc-act" data-panel="entreprises">Voir tout</button>
+          </div>
+          <table class="mt">
+            <thead><tr><th>Entreprise</th><th>Volume</th><th>Heure</th></tr></thead>
+            <tbody>
+              <tr><td><div class="co">Orange Mali</div><div class="co-s">Véhicule #3</div></td><td>60 L</td><td>07:42</td></tr>
+              <tr><td><div class="co">BRAMALI</div><div class="co-s">Véhicule #1</div></td><td>85 L</td><td>08:15</td></tr>
+              <tr><td><div class="co">EDM SA</div><div class="co-s">Véhicule #2</div></td><td>120 L</td><td>09:03</td></tr>
+              <tr><td><div class="co">CMDT</div><div class="co-s">Véhicule #5</div></td><td>200 L</td><td>09:47</td></tr>
+              <tr><td><div class="co">BMS</div><div class="co-s">Véhicule #1</div></td><td>45 L</td><td>10:22</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="ov-g ov-g--11">
+        <div class="dbc">
+          <div class="dbc-hd">
+            <div><div class="dbc-title">Car Wash — Aujourd'hui</div><div class="dbc-sub">Jeudi 26 Juin · 6 rendez-vous</div></div>
+            <button class="dbc-act" data-panel="carwash">Calendrier</button>
+          </div>
+          <div class="cw-slots">
+            <div class="cw-slot cw-slot--done"><div class="cw-time">08:30</div><div class="cw-inf"><div class="cw-car">Toyota Land Cruiser</div><div class="cw-plate">AB-1234-CM · Formule Intégrale</div></div><div class="cw-st">✓ Terminé</div></div>
+            <div class="cw-slot cw-slot--act"><div class="cw-time">09:00</div><div class="cw-inf"><div class="cw-car">Hyundai Tucson</div><div class="cw-plate">BC-5678-CM · Formule Premium</div></div><div class="cw-st">⟳ En cours</div></div>
+            <div class="cw-slot cw-slot--wait"><div class="cw-time">10:00</div><div class="cw-inf"><div class="cw-car">Peugeot 3008</div><div class="cw-plate">CD-9012-CM · Formule Standard</div></div><div class="cw-st">En attente</div></div>
+            <div class="cw-slot cw-slot--wait"><div class="cw-time">11:30</div><div class="cw-inf"><div class="cw-car">Mercedes-Benz GLC</div><div class="cw-plate">EF-3456-CM · Formule Intégrale</div></div><div class="cw-st">En attente</div></div>
+            <div class="cw-slot cw-slot--wait"><div class="cw-time">14:00</div><div class="cw-inf"><div class="cw-car">Toyota Hilux</div><div class="cw-plate">GH-7890-CM · Formule Standard</div></div><div class="cw-st">En attente</div></div>
+            <div class="cw-slot cw-slot--wait"><div class="cw-time">15:30</div><div class="cw-inf"><div class="cw-car">BMW X5</div><div class="cw-plate">IJ-1234-CM · Formule Premium</div></div><div class="cw-st">En attente</div></div>
+          </div>
+        </div>
+        <div class="dbc">
+          <div class="dbc-hd">
+            <div><div class="dbc-title">Alertes &amp; Notifications</div><div class="dbc-sub">3 éléments nécessitent attention</div></div>
+          </div>
+          <div class="al-list">
+            <div class="al-item al-item--warn">
+              <div class="al-ico al-ico--warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+              <div><div class="al-title">Factures mensuelles à émettre</div><div class="al-desc">5 comptes entreprises attendent leur facture de juin.</div></div>
+            </div>
+            <div class="al-item al-item--warn">
+              <div class="al-ico al-ico--warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+              <div><div class="al-title">EDIM SA — Plafond presque atteint</div><div class="al-desc">1 800 L / 2 000 L consommés ce mois (90%).</div></div>
+            </div>
+            <div class="al-item al-item--info">
+              <div class="al-ico al-ico--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+              <div><div class="al-title">Nouvelle réservation Car Wash</div><div class="al-desc">Toyota Hilux · Vendredi 27 Juin à 08:00</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ENTREPRISES ══ -->
+    <div class="db-panel" id="panel-entreprises">
+      <div class="dbc">
+        <div class="dbc-hd">
+          <div><div class="dbc-title">Comptes Entreprises</div><div class="dbc-sub">12 comptes · Facturation mensuelle</div></div>
+          <button class="btn-s btn-s--p" onclick="showToast('Rapport exporté')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Exporter
+          </button>
+        </div>
+        <div class="tbl-bar">
+          <div class="tbl-s">
+            <svg class="tbl-s-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" placeholder="Rechercher une entreprise…" id="entSearch" oninput="filterTable()">
+          </div>
+          <div class="filt-btns">
+            <button class="fb active" onclick="setFilter(this,'all')">Tous (12)</button>
+            <button class="fb" onclick="setFilter(this,'Actif')">Actifs (9)</button>
+            <button class="fb" onclick="setFilter(this,'En attente')">En attente (2)</button>
+            <button class="fb" onclick="setFilter(this,'Suspendu')">Suspendu (1)</button>
+          </div>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="dbt" id="entTable">
+            <thead>
+              <tr>
+                <th>Entreprise</th><th>Véhicules</th><th>Passages juin</th><th>Volume (L)</th><th>Plafond (L)</th><th>Statut</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-st="Actif"><td><div class="ent-n">CMDT</div><div class="ent-s">Cie Malienne Dvpt Textiles</div></td><td>8</td><td>47</td><td>4 200</td><td>5 000</td><td><span class="badge badge--gr">Actif</span></td><td><button class="ta" onclick="showToast('Fiche CMDT ouverte')">Voir</button><button class="ta" onclick="showToast('Facture CMDT générée')">Facturer</button></td></tr>
+              <tr data-st="Actif"><td><div class="ent-n">BMS</div><div class="ent-s">Banque Malienne de Solidarité</div></td><td>5</td><td>28</td><td>1 950</td><td>3 000</td><td><span class="badge badge--gr">Actif</span></td><td><button class="ta" onclick="showToast('Fiche BMS ouverte')">Voir</button><button class="ta" onclick="showToast('Facture BMS générée')">Facturer</button></td></tr>
+              <tr data-st="Actif"><td><div class="ent-n">Orange Mali</div><div class="ent-s">Télécommunications</div></td><td>12</td><td>63</td><td>5 800</td><td>8 000</td><td><span class="badge badge--gr">Actif</span></td><td><button class="ta" onclick="showToast('Fiche Orange Mali ouverte')">Voir</button><button class="ta" onclick="showToast('Facture Orange Mali générée')">Facturer</button></td></tr>
+              <tr data-st="Actif"><td><div class="ent-n">Sotelma-Malitel</div><div class="ent-s">Télécommunications</div></td><td>7</td><td>34</td><td>2 750</td><td>4 000</td><td><span class="badge badge--gr">Actif</span></td><td><button class="ta" onclick="showToast('Fiche Sotelma ouverte')">Voir</button><button class="ta" onclick="showToast('Facture Sotelma générée')">Facturer</button></td></tr>
+              <tr data-st="En attente"><td><div class="ent-n">EDIM SA</div><div class="ent-s">Import-Export</div></td><td>3</td><td>22</td><td>1 800</td><td>2 000</td><td><span class="badge badge--or">En attente</span></td><td><button class="ta" onclick="showToast('Fiche EDIM SA ouverte')">Voir</button><button class="ta" onclick="showToast('Facture EDIM générée')">Facturer</button></td></tr>
+              <tr data-st="Actif"><td><div class="ent-n">C2M</div><div class="ent-s">Ciments et Matériaux du Mali</div></td><td>6</td><td>38</td><td>3 400</td><td>5 000</td><td><span class="badge badge--gr">Actif</span></td><td><button class="ta" onclick="showToast('Fiche C2M ouverte')">Voir</button><button class="ta" onclick="showToast('Facture C2M générée')">Facturer</button></td></tr>
+              <tr data-st="Actif"><td><div class="ent-n">EDM SA</div><div class="ent-s">Energie du Mali</div></td><td>15</td><td>72</td><td>7 200</td><td>10 000</td><td><span class="badge badge--gr">Actif</span></td><td><button class="ta" onclick="showToast('Fiche EDM ouverte')">Voir</button><button class="ta" onclick="showToast('Facture EDM générée')">Facturer</button></td></tr>
+              <tr data-st="Actif"><td><div class="ent-n">SOMAPEP</div><div class="ent-s">Patrimoine Eau Potable</div></td><td>4</td><td>19</td><td>1 600</td><td>3 000</td><td><span class="badge badge--gr">Actif</span></td><td><button class="ta" onclick="showToast('Fiche SOMAPEP ouverte')">Voir</button><button class="ta" onclick="showToast('Facture SOMAPEP générée')">Facturer</button></td></tr>
+              <tr data-st="Actif"><td><div class="ent-n">BRAMALI</div><div class="ent-s">Brasseries du Mali</div></td><td>9</td><td>51</td><td>4 800</td><td>6 000</td><td><span class="badge badge--gr">Actif</span></td><td><button class="ta" onclick="showToast('Fiche BRAMALI ouverte')">Voir</button><button class="ta" onclick="showToast('Facture BRAMALI générée')">Facturer</button></td></tr>
+              <tr data-st="Suspendu"><td><div class="ent-n">HUICOMA</div><div class="ent-s">Huilerie Cotonnière du Mali</div></td><td>2</td><td>0</td><td>0</td><td>2 000</td><td><span class="badge badge--rd">Suspendu</span></td><td><button class="ta" onclick="showToast('Fiche HUICOMA ouverte')">Voir</button><button class="ta" onclick="showToast('Compte HUICOMA réactivé')">Réactiver</button></td></tr>
+              <tr data-st="Actif"><td><div class="ent-n">SOMAGEP</div><div class="ent-s">Gestion Eau Potable</div></td><td>5</td><td>26</td><td>2 300</td><td>3 500</td><td><span class="badge badge--gr">Actif</span></td><td><button class="ta" onclick="showToast('Fiche SOMAGEP ouverte')">Voir</button><button class="ta" onclick="showToast('Facture SOMAGEP générée')">Facturer</button></td></tr>
+              <tr data-st="En attente"><td><div class="ent-n">Maïga Transport</div><div class="ent-s">Transport routier</div></td><td>6</td><td>31</td><td>3 100</td><td>4 000</td><td><span class="badge badge--or">En attente</span></td><td><button class="ta" onclick="showToast('Fiche Maïga ouverte')">Voir</button><button class="ta" onclick="showToast('Facture Maïga générée')">Facturer</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ CAR WASH ══ -->
+    <div class="db-panel" id="panel-carwash">
+      <div class="dbc" style="margin-bottom:16px">
+        <div class="dbc-hd">
+          <div><div class="dbc-title">Semaine du 23 — 29 Juin 2026</div><div class="dbc-sub">34 réservations cette semaine</div></div>
+          <button class="btn-s btn-s--p" onclick="showToast('Réservation ajoutée')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Ajouter
+          </button>
+        </div>
+        <div class="cw-week">
+          <div class="cw-day"><div class="cw-dn">Lun</div><div class="cw-dnum">23</div><div class="cw-dct">5 rdv</div></div>
+          <div class="cw-day"><div class="cw-dn">Mar</div><div class="cw-dnum">24</div><div class="cw-dct">6 rdv</div></div>
+          <div class="cw-day"><div class="cw-dn">Mer</div><div class="cw-dnum">25</div><div class="cw-dct">5 rdv</div></div>
+          <div class="cw-day today"><div class="cw-dn">Jeu</div><div class="cw-dnum">26</div><div class="cw-dct">6 rdv</div></div>
+          <div class="cw-day"><div class="cw-dn">Ven</div><div class="cw-dnum">27</div><div class="cw-dct">5 rdv</div></div>
+          <div class="cw-day"><div class="cw-dn">Sam</div><div class="cw-dnum">28</div><div class="cw-dct">7 rdv</div></div>
+          <div class="cw-day"><div class="cw-dn">Dim</div><div class="cw-dnum">29</div><div class="cw-dct">Fermé</div></div>
+        </div>
+      </div>
+      <div class="dbc">
+        <div class="dbc-hd"><div><div class="dbc-title">Programme — Jeudi 26 Juin</div><div class="dbc-sub">6 véhicules · 1 terminé · 1 en cours · 4 en attente</div></div></div>
+        <div class="cw-slots">
+          <div class="cw-slot cw-slot--done"><div class="cw-time">08:30</div><div class="cw-inf"><div class="cw-car">Toyota Land Cruiser — Formule Intégrale</div><div class="cw-plate">AB-1234-CM · M. Konaté · 7 500 FCFA</div></div><div class="cw-st">✓ Terminé</div></div>
+          <div class="cw-slot cw-slot--act"><div class="cw-time">09:00</div><div class="cw-inf"><div class="cw-car">Hyundai Tucson — Formule Premium</div><div class="cw-plate">BC-5678-CM · Mme Diallo · 5 000 FCFA</div></div><div class="cw-st">⟳ En cours</div></div>
+          <div class="cw-slot cw-slot--wait"><div class="cw-time">10:00</div><div class="cw-inf"><div class="cw-car">Peugeot 3008 — Formule Standard</div><div class="cw-plate">CD-9012-CM · M. Traoré · 3 000 FCFA</div></div><div class="cw-st">En attente</div></div>
+          <div class="cw-slot cw-slot--wait"><div class="cw-time">11:30</div><div class="cw-inf"><div class="cw-car">Mercedes-Benz GLC — Formule Intégrale</div><div class="cw-plate">EF-3456-CM · M. Keïta · 7 500 FCFA</div></div><div class="cw-st">En attente</div></div>
+          <div class="cw-slot cw-slot--wait"><div class="cw-time">14:00</div><div class="cw-inf"><div class="cw-car">Toyota Hilux — Formule Standard</div><div class="cw-plate">GH-7890-CM · M. Coulibaly · 3 000 FCFA</div></div><div class="cw-st">En attente</div></div>
+          <div class="cw-slot cw-slot--wait"><div class="cw-time">15:30</div><div class="cw-inf"><div class="cw-car">BMW X5 — Formule Premium</div><div class="cw-plate">IJ-1234-CM · M. Sanogo · 5 000 FCFA</div></div><div class="cw-st">En attente</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SUPERMARCHÉ ══ -->
+    <div class="db-panel" id="panel-supermarche">
+      <div class="kpi-row" style="margin-bottom:16px">
+        <div class="kpi"><div class="kpi-bar kpi-bar--gr"></div><div class="kpi-ico kpi-ico--gr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><div class="kpi-val">3.2M <small style="font-size:.65rem">FCFA</small></div><div class="kpi-lbl">CA Supermarché — Juin</div><div><span class="kpi-delta kpi-delta--up">↑ +8% vs Mai</span></div></div>
+        <div class="kpi"><div class="kpi-bar kpi-bar--bl"></div><div class="kpi-ico kpi-ico--bl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div><div class="kpi-val">1 840</div><div class="kpi-lbl">Transactions ce mois</div><div><span class="kpi-delta kpi-delta--up">↑ +120 vs Mai</span></div></div>
+        <div class="kpi"><div class="kpi-bar kpi-bar--go"></div><div class="kpi-ico kpi-ico--go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div><div class="kpi-val">1 739 <small style="font-size:.65rem">FCFA</small></div><div class="kpi-lbl">Panier moyen</div><div><span class="kpi-delta kpi-delta--up">↑ +3.2%</span></div></div>
+        <div class="kpi"><div class="kpi-bar kpi-bar--or"></div><div class="kpi-ico kpi-ico--or"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div class="kpi-val">3</div><div class="kpi-lbl">Articles en rupture</div><div><span class="kpi-delta kpi-delta--dn">↓ Action requise</span></div></div>
+      </div>
+      <div class="dbc" style="margin-bottom:16px">
+        <div class="dbc-hd"><div><div class="dbc-title">Ventes par catégorie — Juin 2026</div></div></div>
+        <div class="cat-grid">
+          <div class="cat-c"><div class="cat-ico" style="background:rgba(245,97,15,.1)">🍔</div><div><div class="cat-n">Alimentaire</div><div class="cat-v">980 000 FCFA · 34%</div></div></div>
+          <div class="cat-c"><div class="cat-ico" style="background:rgba(30,111,190,.1)">🥤</div><div><div class="cat-n">Boissons</div><div class="cat-v">560 000 FCFA · 20%</div></div></div>
+          <div class="cat-c"><div class="cat-ico" style="background:rgba(22,163,74,.1)">🧴</div><div><div class="cat-n">Hygiène &amp; Soins</div><div class="cat-v">420 000 FCFA · 15%</div></div></div>
+          <div class="cat-c"><div class="cat-ico" style="background:rgba(217,119,6,.1)">🔧</div><div><div class="cat-n">Automobile &amp; Huiles</div><div class="cat-v">380 000 FCFA · 13%</div></div></div>
+          <div class="cat-c"><div class="cat-ico" style="background:rgba(139,92,246,.1)">🧹</div><div><div class="cat-n">Entretien maison</div><div class="cat-v">290 000 FCFA · 10%</div></div></div>
+          <div class="cat-c"><div class="cat-ico" style="background:rgba(236,72,153,.1)">📦</div><div><div class="cat-n">Autres</div><div class="cat-v">230 000 FCFA · 8%</div></div></div>
+        </div>
+      </div>
+      <div class="dbc">
+        <div class="dbc-hd"><div><div class="dbc-title">Alertes Stock</div><div class="dbc-sub">3 articles à commander</div></div></div>
+        <div class="al-list">
+          <div class="al-item al-item--warn"><div class="al-ico al-ico--warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div><div class="al-title">Huile moteur Total 5L — Rupture de stock</div><div class="al-desc">Stock : 0 unités · Commander immédiatement</div></div></div>
+          <div class="al-item al-item--warn"><div class="al-ico al-ico--warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div><div class="al-title">Eau minérale Djoliba 1.5L — Stock bas</div><div class="al-desc">Stock : 8 unités · Seuil minimum : 20 unités</div></div></div>
+          <div class="al-item al-item--warn"><div class="al-ico al-ico--warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div><div class="al-title">Savon lessive Omo 500g — Stock bas</div><div class="al-desc">Stock : 5 unités · Seuil minimum : 12 unités</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ RAPPORTS ══ -->
+    <div class="db-panel" id="panel-rapports">
+      <div class="kpi-row" style="margin-bottom:20px">
+        <div class="kpi"><div class="kpi-bar kpi-bar--or"></div><div class="kpi-ico kpi-ico--or"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="kpi-val">6</div><div class="kpi-lbl">Rapports disponibles</div></div>
+        <div class="kpi"><div class="kpi-bar kpi-bar--bl"></div><div class="kpi-ico kpi-ico--bl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="kpi-val">44.8M <small style="font-size:.65rem">FCFA</small></div><div class="kpi-lbl">CA total Juin 2026</div></div>
+        <div class="kpi"><div class="kpi-bar kpi-bar--gr"></div><div class="kpi-ico kpi-ico--gr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="kpi-val">12</div><div class="kpi-lbl">Factures émises — Juin</div></div>
+        <div class="kpi"><div class="kpi-bar kpi-bar--go"></div><div class="kpi-ico kpi-ico--go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="kpi-val">5</div><div class="kpi-lbl">Factures en attente</div><div><span class="kpi-delta kpi-delta--dn">↓ À émettre</span></div></div>
+      </div>
+      <div class="rpt-grid">
+        <div class="rpt-c">
+          <div class="rpt-ico" style="background:var(--primary-lt);color:var(--primary)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <div class="rpt-t">Rapport mensuel — Juin 2026</div>
+          <div class="rpt-d">Synthèse complète : carburant, car wash, supermarché, B2B. CA, volumes, marges.</div>
+          <button class="btn-s btn-s--p" onclick="showToast('Rapport Juin 2026 téléchargé')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Télécharger PDF</button>
+        </div>
+        <div class="rpt-c">
+          <div class="rpt-ico" style="background:var(--blue-lt);color:var(--blue)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div class="rpt-t">Factures Entreprises — Juin 2026</div>
+          <div class="rpt-d">Toutes les factures B2B des 12 comptes. Volumes, montants, statuts de paiement.</div>
+          <button class="btn-s" onclick="showToast('Factures exportées en Excel')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Exporter Excel</button>
+        </div>
+        <div class="rpt-c">
+          <div class="rpt-ico" style="background:var(--green-lt);color:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
+          <div class="rpt-t">Rapport Car Wash — Juin 2026</div>
+          <div class="rpt-d">Réservations, formules, revenus, taux de remplissage par jour et semaine.</div>
+          <button class="btn-s" onclick="showToast('Rapport Car Wash téléchargé')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Télécharger PDF</button>
+        </div>
+        <div class="rpt-c">
+          <div class="rpt-ico" style="background:var(--gold-lt);color:var(--gold)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
+          <div class="rpt-t">Rapport Supermarché — Juin 2026</div>
+          <div class="rpt-d">Ventes par catégorie, transactions, panier moyen, alertes stock.</div>
+          <button class="btn-s" onclick="showToast('Rapport Supermarché téléchargé')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Télécharger PDF</button>
+        </div>
+        <div class="rpt-c">
+          <div class="rpt-ico" style="background:rgba(139,92,246,.1);color:#7c3aed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div class="rpt-t">Bilan annuel 2025</div>
+          <div class="rpt-d">Récapitulatif de l'année 2025 : tous services confondus, croissance, points forts.</div>
+          <button class="btn-s" onclick="showToast('Bilan 2025 téléchargé')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Télécharger PDF</button>
+        </div>
+        <div class="rpt-c">
+          <div class="rpt-ico" style="background:rgba(236,72,153,.1);color:#db2777"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+          <div class="rpt-t">Rapport personnalisé</div>
+          <div class="rpt-d">Créer un rapport sur une période et activité spécifique selon vos besoins.</div>
+          <button class="btn-s" onclick="showToast('Disponible prochainement')">Configurer →</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <svg class="toast-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+  <span id="toastMsg">Action effectuée</span>
+</div>
+
+<script>
+/* Navigation */
+const panels = document.querySelectorAll('.db-panel');
+const navBtns = document.querySelectorAll('.sn[data-panel]');
+const titleEl = document.getElementById('pageTitle');
+const titles = {overview:"Vue d'ensemble",entreprises:"Comptes Entreprises",carwash:"Car Wash",supermarche:"Supermarché",rapports:"Rapports"};
+
+function showPanel(id) {
+  panels.forEach(p => p.classList.remove('active'));
+  navBtns.forEach(b => b.classList.remove('active'));
+  const p = document.getElementById('panel-' + id);
+  if (p) p.classList.add('active');
+  navBtns.forEach(b => { if (b.dataset.panel === id) b.classList.add('active'); });
+  if (titles[id]) titleEl.textContent = titles[id];
+  closeSidebar();
+  window.scrollTo(0, 0);
+}
+
+navBtns.forEach(b => b.addEventListener('click', () => showPanel(b.dataset.panel)));
+document.querySelectorAll('.dbc-act[data-panel]').forEach(b => {
+  b.addEventListener('click', () => showPanel(b.dataset.panel));
+});
+
+/* Mobile sidebar */
+const sidebar = document.getElementById('sidebar');
+const sbOv = document.getElementById('sbOv');
+const burger = document.getElementById('burgerBtn');
+function openSidebar()  { sidebar.classList.add('open'); sbOv.classList.add('show'); document.body.style.overflow='hidden'; }
+function closeSidebar() { sidebar.classList.remove('open'); sbOv.classList.remove('show'); document.body.style.overflow=''; }
+burger.addEventListener('click', openSidebar);
+sbOv.addEventListener('click', closeSidebar);
+
+/* Table filter */
+let activeFilter = 'all';
+function filterTable() {
+  const q = document.getElementById('entSearch').value.toLowerCase();
+  document.querySelectorAll('#entTable tbody tr').forEach(row => {
+    const n = (row.querySelector('.ent-n')?.textContent || '').toLowerCase();
+    const s = (row.querySelector('.ent-s')?.textContent || '').toLowerCase();
+    const st = row.dataset.st || '';
+    const okQ = !q || n.includes(q) || s.includes(q);
+    const okF = activeFilter === 'all' || st === activeFilter;
+    row.style.display = okQ && okF ? '' : 'none';
+  });
+}
+function setFilter(btn, f) {
+  document.querySelectorAll('.fb').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = f;
+  filterTable();
+}
+
+/* Toast */
+let tt;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(tt);
+  tt = setTimeout(() => t.classList.remove('show'), 2800);
+}
+</script>
+</body>
+</html>

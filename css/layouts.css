@@ -1,0 +1,184 @@
+/* ============================================================
+   LAYOUTS.CSS — Responsive overrides
+   ============================================================ */
+
+/* ── ≤ 1100px ── */
+@media (max-width: 1100px) {
+  .nav__tel   { display: none; }
+  .nav__links { gap: 20px; }
+  .nav        { width: calc(100% - 32px); padding: 0 24px; }
+  .hero__wrap { gap: 40px; }
+  .hero__ring-a { width: 340px; height: 340px; }
+  .hero__ring-b { width: 380px; height: 380px; }
+
+  .biz__benefits { grid-template-columns: repeat(2, 1fr); }
+
+  .carwash__grid { grid-template-columns: 1fr; gap: 48px; }
+  .cw-cards { grid-template-columns: repeat(2, 1fr); }
+
+  .mkt__cats { grid-template-columns: repeat(2, 1fr); }
+  .mkt__bottom { flex-direction: column; align-items: flex-start; }
+
+  .cwtarifs { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── ≤ 960px ── */
+@media (max-width: 960px) {
+  .nav__links    { display: none; }
+  .nav__burger   { display: flex; }
+  .nav .btn--sm  { display: none; }
+  .nav__tel      { display: none; }
+
+  .biz__steps    { flex-direction: column; }
+  .biz__step-arr { display: none; }
+  .biz__benefits { grid-template-columns: 1fr 1fr; }
+
+  .page-hero { padding-top: calc(var(--nav-h) + 56px); padding-bottom: 60px; }
+  .page-hero__btns { flex-direction: column; }
+  .page-hero__btns .btn { width: max-content; }
+
+  .hero__wrap {
+    grid-template-columns: 1fr;
+    padding-top: calc(var(--nav-h) + 76px);
+    padding-bottom: 80px;
+    text-align: center;
+  }
+  .hero__text    { max-width: 100%; }
+  .hero__desc    { max-width: 100%; margin-inline: auto; }
+  .hero__status  { justify-content: center; }
+  .hero__btns    { justify-content: center; }
+  .hero__pillars { flex-direction: column; gap: 16px; }
+  .hpillar__sep  { width: 80px; height: 1px; }
+  .fslider__track { padding-inline: 20px; }
+  .hero__gauge   { display: none; }
+  .hero__scroll  { display: none; }
+
+  .metrics__row { justify-content: center; }
+  .met__sep     { display: none; }
+  .met          { min-width: 40%; }
+
+  .srv-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .gal-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 200px 200px 200px;
+  }
+  .gi--tall { grid-row: span 2; }
+  .gi--wide { grid-column: span 2; }
+
+  .about__grid  { grid-template-columns: 1fr; gap: 48px; text-align: center; }
+  .about__photo img { height: 340px; }
+  .about__tags  { justify-content: center; }
+  .about__cta   { margin-inline: auto; }
+
+  .hrs__grid    { grid-template-columns: 1fr; }
+
+  .contact__grid { grid-template-columns: 1fr; gap: 48px; }
+
+  .footer__top  { flex-direction: column; gap: 40px; }
+  .footer__brand { max-width: 100%; }
+  .footer__cols { flex-wrap: wrap; gap: 28px; justify-content: flex-start; }
+}
+
+/* ── ≤ 640px ── */
+@media (max-width: 640px) {
+  .nav { padding-inline: 18px; width: calc(100% - 24px); }
+
+  .biz__benefits { grid-template-columns: 1fr; }
+  .biz__cta      { flex-direction: column; align-items: center; }
+
+  .cw-cards { grid-template-columns: 1fr; }
+  .cw-feats { gap: 12px; }
+
+  .mkt__cats { grid-template-columns: 1fr; }
+  .mkt__feats { gap: 8px; }
+
+  .cwtarifs { grid-template-columns: 1fr; }
+  .page-hero__btns .btn { width: 100%; text-align: center; justify-content: center; }
+
+  .hero__wrap { padding-top: calc(var(--nav-h) + 56px); }
+  .hero__h1   { text-align: left; }
+  .hero__status { justify-content: flex-start; }
+  .hero__btns   { justify-content: flex-start; flex-direction: column; }
+  .hero__btns .btn { width: 100%; justify-content: center; }
+  .hero__pillars { flex-direction: row; flex-wrap: wrap; }
+  .hpillar { min-width: 40%; }
+  .hpillar__sep:nth-child(4) { display: none; }
+
+  .srv-grid { grid-template-columns: 1fr; gap: 12px; }
+  .srv      { padding: 32px 24px; }
+
+  .brow {
+    grid-template-columns: 14px 1fr auto;
+    gap: 10px;
+  }
+  .brow__type { display: none; }
+
+  .gal-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 150px 150px 150px;
+  }
+
+  .tnav { display: none; }
+
+  .about__grid { text-align: left; }
+  .about__tags { justify-content: flex-start; }
+  .about__cta  { margin-inline: 0; }
+
+  .hrow { grid-template-columns: 1fr auto; }
+  .hrow__t { display: none; }
+
+  .frow { grid-template-columns: 1fr; }
+
+  .footer__bot  { flex-direction: column; gap: 10px; text-align: center; }
+  .footer__cols { flex-direction: column; gap: 20px; }
+
+  .btt { bottom: 20px; right: 20px; }
+}
+
+/* ── BENTO responsive ── */
+@media (max-width: 1060px) {
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 260px 220px 220px 220px;
+    grid-template-areas:
+      "fuel fuel"
+      "wash mkt"
+      "biz  biz"
+      "mec  pay";
+  }
+}
+@media (max-width: 640px) {
+  .bento {
+    grid-template-columns: 1fr;
+    grid-template-rows: 280px 200px 200px 200px 180px 180px;
+    grid-template-areas:
+      "fuel"
+      "wash"
+      "biz"
+      "mkt"
+      "mec"
+      "pay";
+  }
+  .bcard__desc { max-width: none !important; }
+  .trust__inner { gap: 0; flex-direction: column; align-items: flex-start; padding: 0 20px; }
+  .tlogo { padding: 8px 0; }
+  .tlogo__sep { width: 100%; height: 1px; }
+  .cta-final { padding: 80px 0; }
+  .cta-final__h { font-size: clamp(1.8rem, 8vw, 2.6rem); }
+  .faq__q { font-size: .88rem; padding: 18px 18px; }
+  .faq__a-in { padding: 0 18px; }
+  .faq__item.open .faq__a-in { padding: 0 18px 18px; }
+}
+
+/* ── ≤ 380px ── */
+@media (max-width: 380px) {
+  .gal-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .gi         { height: 200px; }
+  .gi--tall, .gi--wide { grid-row: span 1; grid-column: span 1; }
+  .met        { min-width: 100%; }
+  .hero__btns .btn { font-size: .62rem; }
+}
